@@ -1,7 +1,7 @@
-vim.cmd("set expandtab")
-vim.cmd("set tabstop=2")
-vim.cmd("set softtabstop=2")
-vim.cmd("set shiftwidth=2")
+vim.opt.expandtab = true
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
+vim.opt.shiftwidth = 2
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
@@ -60,11 +60,26 @@ vim.opt.scrolloff = 10
 
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
---  See `:help vim.highlight.on_yank()`
+--  See `:help vim.hl.on_yank()`
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
   group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
   callback = function()
-    vim.highlight.on_yank()
+    vim.hl.on_yank()
   end,
 })
+
+-- Window navigation
+for _, k in ipairs({ "h", "j", "k", "l" }) do
+  vim.keymap.set("n", "<C-" .. k .. ">", "<C-w>" .. k, { desc = "Go to window " .. k })
+end
+
+-- Window splits
+vim.keymap.set("n", "<leader>-", "<C-w>s", { desc = "Split horizontally" })
+vim.keymap.set("n", "<leader>|", "<C-w>v", { desc = "Split vertically" })
+
+-- Window resizing
+vim.keymap.set("n", "<C-Up>", "<C-w>+", { desc = "Increase window height" })
+vim.keymap.set("n", "<C-Down>", "<C-w>-", { desc = "Decrease window height" })
+vim.keymap.set("n", "<C-Left>", "<C-w><", { desc = "Decrease window width" })
+vim.keymap.set("n", "<C-Right>", "<C-w>>", { desc = "Increase window width" })
