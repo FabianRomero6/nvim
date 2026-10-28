@@ -16,7 +16,7 @@ You need Neovim, git, and Node.js. Mason installs `ts_ls` and `pyright` with npm
 2. Clone the repository and link it to the path Neovim reads.
 
 	```sh
-	git clone <repo-url> ~/dotfiles/nvim
+	git clone https://github.com/FabianRomero6/nvim.git ~/dotfiles/nvim
 	ln -s ~/dotfiles/nvim ~/.config/nvim
 	```
 
